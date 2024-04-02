@@ -5,7 +5,7 @@ INCLUDES = -I ./inc/\
 		   -I ./readline/
 
 SRC = main.c
-
+#ESTO ES DE SUPPORT
 DIR_SRC = ./src
 DIR_OBJ = $(DIR_SRC)/objs
 OBJ = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.o))
