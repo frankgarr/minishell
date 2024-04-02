@@ -3,10 +3,10 @@ FLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 INCLUDES = -I ./inc/\
            -I ./libft/\
 		   -I ./readline/
-SRC = 
+SRC = main.c
 
 DIR_SRC = ./src
-DIR_OBJ = $(DIR_SRC)/obj
+DIR_OBJ = $(DIR_SRC)/objs
 OBJ = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.o))
 DEP = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.d))
 
@@ -16,8 +16,8 @@ readline:
 		curl https://ftp.gnu.org/gnu/readline/readline-8.2.tar.gz -o readline
 		tar -xf readline
 		rm readline
-		mv readline-8.2 readline 
-		./configure
+		mv readline-8.2 readline
+		cd readline && ./configure 
 
 dir:
 	make -C ./readline/ --no-print-directory

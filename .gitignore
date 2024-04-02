@@ -1,0 +1,5 @@
+readline
+objs
+.DS_Store
+a.out
+*.s*

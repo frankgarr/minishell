@@ -17,7 +17,7 @@ static int	ft_len_utoa(unsigned int nb)
 	int	len;
 
 	len = 0;
-	if (nb == 0 || nb < 0)
+	if (nb == 0)
 		len++;
 	while (nb != 0)
 	{
@@ -41,8 +41,6 @@ char	*ft_utoa(unsigned int nb)
 	str[len] = '\0';
 	if (nb == 0)
 		str[0] = '0';
-	if (nb < 0)
-		nb = -nb;
 	while (nb != 0)
 	{
 		len--;
