@@ -13,7 +13,7 @@ DEP = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.d))
 
 all: readline dir $(NAME)
 
-readline: 
+readline:
 		curl https://ftp.gnu.org/gnu/readline/readline-8.2.tar.gz -o readline
 		tar -xf readline
 		rm readline
@@ -43,5 +43,5 @@ fclean: clean
 	make fclean -C ./libft/ --no-print-directory
 	echo "EVERYTHING Erased D:"
 re: fclean all
-.PHONY: fclean all clean re dir
+.PHONY: all re dir fclean clean
 .SILENT:
