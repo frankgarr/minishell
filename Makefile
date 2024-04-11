@@ -1,7 +1,7 @@
 NAME = minishell
 FLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 INCLUDES = -I ./inc/\
-           -I ./libft/\
+           -I ./libft\
 		   -I ./readline/
 
 SRC = main.c
@@ -26,10 +26,10 @@ dir:
 	mkdir -p $(DIR_OBJ)
 
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c Makefile
-	$(CC) -MMD $(FLAGS)  -c $< -o $@ $(INCLUDES)
+	$(CC) -MMD $(FLAGS) -DREADLINE_LIBRARY=1 -c $< -o $@ $(INCLUDES)
 
 $(NAME): $(OBJ) ./libft/libft.a
-	$(CC) $(FLAGS) $(OBJ)  ./libft/libft.a -o $@ $(INCLUDES)
+	$(CC) $(FLAGS) $(OBJ) ./libft/libft.a ./readline/libreadline.a ./readline/libhistory.a  -lreadline -lhistory -ltermcap -lft -L./readline -L./libft -o $@ $(INCLUDES)
 	echo "$(NAME) Created :D"
 
 -include $(DEP)
@@ -40,8 +40,8 @@ clean:
 	echo "DEPENDENCIES Erased :D"
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf readline
 	make fclean -C ./libft/ --no-print-directory
 	echo "EVERYTHING Erased D:"
 re: fclean all
 .PHONY: all re dir fclean clean
-.SILENT:

@@ -1,7 +1,11 @@
-#include "minishell.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
-char **ft_tokenizator(const char *entrada) {
+// Función para tokenizar respetando las comillas dobles
+char **tokenizar(const char *entrada) {
     char **tokens = malloc(1024 * sizeof(char*));
     if (!tokens) {
         fprintf(stderr, "minishell: allocation error\n");
@@ -25,33 +29,28 @@ char **ft_tokenizator(const char *entrada) {
     return tokens;
 }
 
-int main(int argc, char **argv, char **env)
-{
-	char	*linea;
-	char **args;
-	int		i = 0;
+int main(void) {
+    char *linea;
+    char **args;
+    int i;
 
-	(void)argv;
-	if (argc != 1)
-		exit(ft_fd_printf(2, MSG_INVALID_ARG) * 0 + 1);
-	else
-	{
-		ft_printf(*env);
+    // Leer una línea de entrada
+    linea = readline("minishell> ");
+    if (!linea) {
+        printf("\n");
+        exit(EXIT_SUCCESS);
+    }
 
-		//-----PRUEBAS TOKENIZADOR-----//
-		linea = readline("minishell> ");
-		if (!linea)
-			exit(ft_fd_printf(2, "FALLO LINEA") * 0 + 1);
-		args = ft_tokenizator(linea);
-		while(args[i] != NULL)
-		{
-			printf("Token %d: %s\n", i, args[i]);
-			i++;
-		}
-		free(linea);
-		free(args);
-		//-----PRUEBAS TOKENIZADOR-----//
-	}
+    // Tokenizar la entrada
+    args = tokenizar(linea);
 
-return (EXIT_SUCCESS);
+    // Imprimir tokens
+    for (i = 0; args[i] != NULL; i++) {
+        printf("Token %d: %s\n", i, args[i]);
+    }
+
+    // Liberar memoria
+    free(linea);
+    free(args);
+    return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: feaguila <feaguila@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:29:04 by feaguila          #+#    #+#             */
-/*   Updated: 2023/11/12 13:04:21 by feaguila         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:29:14 by feaguila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 /*-- INIT --*/
 int		ft_printf(char const *str, ...);
+int		ft_fd_printf(int fd, const char *f, ...);
 
 /*-- CHECK --*/
 int		ft_checkprint(va_list args, char c);
